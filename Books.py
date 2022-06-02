@@ -1,6 +1,3 @@
-from turtle import title
-
-
 class Book:
     def __init__(self, title, author, year_of_publication, isbn, number_of_books, available=0) -> None:
         self.title = title
@@ -9,3 +6,6 @@ class Book:
         self.isbn = isbn
         self.number_of_books = number_of_books
         self.available = available
+
+    def print_f():
+        print("it's working")

@@ -1,6 +1,3 @@
-from mimetypes import init
-
-
 class Member:
     def __init__(self, first_name, last_name, student_number, student_id, lent_books=0) -> None:
         self.first_name = first_name

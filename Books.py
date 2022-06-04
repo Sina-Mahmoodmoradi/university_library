@@ -2,13 +2,21 @@ from FileHandler import FileHandler as fl
 
 
 class Book:
-    def __init__(self, title, author, year_of_publication, isbn, number_of_books, available=0) -> None:
+    def __init__(self, title, author, year_of_publication, isbn, number_of_books, available=None) -> None:
         self.title = title
         self.author = author
         self.year_of_publication = year_of_publication
         self.isbn = isbn
         self.number_of_books = number_of_books
-        self.available = available
+        self.available = available if available is not None else number_of_books
+
+    def get_dict(self):
+        return {'title': self.title,
+                'author': self.author,
+                'year_of_publication': self.year_of_publication,
+                'isbn': self.isbn,
+                'number_of_books': self.number_of_books,
+                'available': self.available}
 
     def add_book(self):
         books = fl.get_all_books()

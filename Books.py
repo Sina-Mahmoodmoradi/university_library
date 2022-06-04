@@ -26,3 +26,8 @@ class Book:
 
     def book_exists(isbn):
         return isbn in fl.get_all_books()
+
+    def search_book_by_title(title):
+        books = fl.get_all_books().values()
+        results = filter(lambda book: title in book.title, books)
+        return list(results)

@@ -18,3 +18,11 @@ class Book:
         else:
             books[self.isbn] = self
         fl.add_books_to_file(books)
+
+    def edit_book(self):
+        books = fl.get_all_books()
+        books[self.isbn] = self
+        fl.add_books_to_file(books)
+
+    def book_exists(isbn):
+        return isbn in fl.get_all_books()

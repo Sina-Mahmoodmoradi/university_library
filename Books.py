@@ -31,3 +31,15 @@ class Book:
         books = fl.get_all_books().values()
         results = filter(lambda book: title in book.title, books)
         return list(results)
+
+    def search_book_by_author(author):
+        books = fl.get_all_books().values()
+        results = filter(lambda book: author in book.author, books)
+        return list(results)
+
+    def search_book_by_isbn(isbn):
+        books = fl.get_all_books()
+        if isbn in books:
+            return books[isbn]
+        else:
+            return False

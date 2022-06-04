@@ -1,3 +1,6 @@
+from FileHandler import FileHandler as fl
+
+
 class Book:
     def __init__(self, title, author, year_of_publication, isbn, number_of_books, available=0) -> None:
         self.title = title
@@ -7,5 +10,11 @@ class Book:
         self.number_of_books = number_of_books
         self.available = available
 
-    def print_f():
-        print("it's working")
+    def add_book(self):
+        books = fl.get_all_books()
+        if self.isbn in books:
+            books[self.isbn].number_of_books += self.number_of_books
+            books[self.isbn].available += self.number_of_books
+        else:
+            books[self.isbn] = self
+        fl.add_books_to_file(books)

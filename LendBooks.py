@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from pkgutil import get_data
 from Books import Book
 from Members import Member
 from FileHandler import FileHandler as fl
@@ -13,6 +14,9 @@ class LendBook:
 
     def get_list(self):
         return [self.isbn, self.student_number, self.date_lend, self.date_return]
+
+    def get_date(date_to_convert):
+        return date.fromisoformat(date_to_convert)
 
     def lend(self):
         book = Book.get_book_by_isbn(self.isbn)
@@ -52,4 +56,4 @@ class LendBook:
         Book.get_book_by_isbn(self.isbn).return_book()
         Member.get_member_by_student_number(self.student_number).return_book()
         del records[record_key]
-        fl.rewrite_lent_books_file(records)
+        fl.rewrite_lendbook_file(records)

@@ -1,6 +1,7 @@
 from csv import reader as csv_reader, DictWriter, writer as csv_writer
 from Books import Book
 from Members import Member
+from LendBooks import LendBook
 from os.path import exists
 
 
@@ -59,3 +60,27 @@ class FileHandler:
                 writer.writerow(['isbn', 'student_number',
                                 'date_lend', 'date_return'])
             writer.writerow(lent_book.get_list())
+
+    def rewrite_lendbook_file(lent_books):
+        with open('lendbook.csv', 'w') as file:
+            writer = csv_writer(file)
+            writer.writerow(['isbn', 'student_number',
+                            'date_lend', 'date_return'])
+
+            for lent_book in lent_books:
+                writer.writerow(lent_book.get_list())
+
+    def get_records_of_lent_books():
+        records = []
+        try:
+            with open('lendbook.csv', 'r') as file:
+                reader = csv_reader(file)
+                next(reader)  # ignoring header
+
+                for row in reader:
+                    isbn, student_number, date_lend, date_return = row
+                    date_lend = LendBook.get_date(date_lend)
+                    records.append(isbn, student_number, date_lend)
+        except FileNotFoundError:
+            pass
+        return records

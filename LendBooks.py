@@ -17,7 +17,7 @@ class LendBook:
             print('ISBN does not match!')
             return
         if book.available == 0:
-            print('book is not available!')
+            print('this book is not available right now!')
             return
 
         member = Member.get_member_by_student_number(self.student_number)
@@ -27,6 +27,26 @@ class LendBook:
         if member.lent_books == 3:
             print('student has already have 3 books!')
             return
-
+        book.lend_book()
+        member.lend_book()
         fl.lend_book(self)
         print('done!')
+
+    def return_book(self):
+        records = fl.get_records_of_lent_books()
+        record_key = False
+        for key, r in enumerate(records):
+            if r.student_number == self.student_number and r.isbn == self.isbn:
+                record_key = key
+        if record_key is False:
+            print('This information does not match any records')
+            return
+
+        if self.date_lend > records[record_key].date_return:
+            print(
+                f'the book has been brought back {self.date_lend - records[record_key].date_return} day(s) late')
+
+        Book.get_book_by_isbn(self.isbn).return_book()
+        Member.get_member_by_student_number(self.student_number).return_book()
+        del records[record_key]
+        fl.rewrite_lent_books_file(records)

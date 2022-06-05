@@ -57,3 +57,35 @@ class LendBook:
         Member.get_member_by_student_number(self.student_number).return_book()
         del records[record_key]
         fl.rewrite_lendbook_file(records)
+
+    def get_records_based_on_date_lend(date_lend):
+        records = fl.get_records_of_lent_books()
+        results = []
+        for record in records:
+            if str(record.date_lend) == date_lend:
+                results.append(record)
+        return results
+
+    def get_records_based_on_date_return(date_return):
+        records = fl.get_records_of_lent_books()
+        results = []
+        for record in records:
+            if str(record.date_return) == date_return:
+                results.append(record)
+        return results
+
+    def get_records_based_on_isbn(isbn):
+        records = fl.get_records_of_lent_books()
+        results = []
+        for record in records:
+            if record.isbn == isbn:
+                results.append(record)
+        return results
+
+    def get_records_based_on_student_number(student_number):
+        records = fl.get_records_of_lent_books()
+        results = []
+        for record in records:
+            if record.student_number == student_number:
+                results.append(record)
+        return results

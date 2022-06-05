@@ -18,9 +18,24 @@ class Member:
     def member_exists(student_number):
         return student_number in fl.get_all_members()
 
-    def search_member_by_name(name):
+    def get_dict(self):
+        return {
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'student_number': self.student_number,
+            'student_id': self.student_id,
+            'lent_books': self.lent_books
+        }
+
+    def search_member_by_last_name(last_name):
         members = fl.get_all_members().values()
-        results = filter(lambda member: name in member.name, members)
+        results = filter(lambda member: last_name in member.last_name, members)
+        return list(results)
+
+    def search_member_by_first_name(first_name):
+        members = fl.get_all_members().values()
+        results = filter(
+            lambda member: first_name in member.first_name, members)
         return list(results)
 
     def search_member_by_author(student_id):

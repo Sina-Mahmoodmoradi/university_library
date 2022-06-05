@@ -18,6 +18,16 @@ class Member:
     def member_exists(student_number):
         return student_number in fl.get_all_members()
 
+    def lend_book(self):
+        members = fl.get_all_members()
+        members[self.student_number].lent_books += 1
+        fl.add_members_to_file(members)
+
+    def return_book(self):
+        members = fl.get_all_members()
+        members[self.student_number].lent_books -= 1
+        fl.add_members_to_file(members)
+
     def get_dict(self):
         return {
             'first_name': self.first_name,

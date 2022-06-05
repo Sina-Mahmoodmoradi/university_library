@@ -11,6 +11,9 @@ class LendBook:
         self.date_lend = date_lend
         self.date_return = date_lend + timedelta(days=7)
 
+    def get_list(self):
+        return [self.isbn, self.student_number, self.date_lend, self.date_return]
+
     def lend(self):
         book = Book.get_book_by_isbn(self.isbn)
         if not book:

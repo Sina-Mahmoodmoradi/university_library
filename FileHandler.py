@@ -1,6 +1,7 @@
-from csv import reader as csv_reader, DictWriter
+from csv import reader as csv_reader, DictWriter, writer as csv_writer
 from Books import Book
 from Members import Member
+from os.path import exists
 
 
 class FileHandler:
@@ -49,3 +50,12 @@ class FileHandler:
         except FileNotFoundError:
             pass
         return members
+
+    def lend_book(lent_book):
+        file_exists = exists('lendbook.csv')
+        with open('books.csv', 'a') as file:
+            writer = csv_writer(file)
+            if not file_exists:
+                writer.writerow(['isbn', 'student_number',
+                                'date_lend', 'date_return'])
+            writer.writerow(lent_book.get_list())

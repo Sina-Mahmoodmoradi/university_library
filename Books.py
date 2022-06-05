@@ -27,6 +27,16 @@ class Book:
             books[self.isbn] = self
         fl.add_books_to_file(books)
 
+    def lend_book(self):
+        books = fl.get_all_books()
+        books[self.isbn].available -= 1
+        fl.add_books_to_file(books)
+
+    def return_book(self):
+        books = fl.get_all_books()
+        books[self.isbn].available += 1
+        fl.add_books_to_file(books)
+
     def edit_book(self):
         books = fl.get_all_books()
         books[self.isbn] = self

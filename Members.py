@@ -38,14 +38,14 @@ class Member:
             lambda member: first_name in member.first_name, members)
         return list(results)
 
-    def get_member_by_author(student_id):
+    def get_member_by_student_id(student_id):
         members = fl.get_all_members().values()
         for member in members:
             if member.student_id == student_id:
                 return member
         return False
 
-    def get_member_by_isbn(student_number):
+    def get_member_by_student_number(student_number):
         members = fl.get_all_members()
         if student_number in members:
             return members[student_number]

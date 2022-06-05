@@ -1,4 +1,4 @@
-from csv import reader, DictWriter
+from csv import reader as csv_reader, DictWriter
 from Books import Book
 from Members import Member
 
@@ -16,7 +16,7 @@ class FileHandler:
         books = {}
         try:
             with open('books.csv', 'r') as file:
-                reader = reader(file)
+                reader = csv_reader(file)
                 next(reader)  # ignoring header
 
                 for row in reader:
@@ -39,7 +39,7 @@ class FileHandler:
         members = {}
         try:
             with open('members.csv', 'r') as file:
-                reader = reader(file)
+                reader = csv_reader(file)
                 next(reader)  # ignoring header
 
                 for row in reader:

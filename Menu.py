@@ -5,7 +5,7 @@ from LendBooks import LendBook
 
 class Menu:
     def search_books():
-        print('1. Search by book name ')
+        print('1. Search by book title ')
         print('2. Search by author name ')
         print('3. Search by ISBN ')
         print('4. Return ')
@@ -13,13 +13,16 @@ class Menu:
         print('choose one of above options: ', end='')
 
         choices = {
-            '1': Menu.search_name,
+            '1': Menu.search_title,
             '2': Menu.search_author,
             '3': Menu.search_isbn,
             '4': lambda: 1,
         }
 
         Menu.looper(choices)
+
+    def search_title():
+        print('Enter book\'s title or part of it: ', end='')
 
     def looper(choices):
         while(True):

@@ -7,8 +7,9 @@ class Book:
         self.author = author
         self.year_of_publication = year_of_publication
         self.isbn = isbn
-        self.number_of_books = number_of_books
-        self.available = available if available is not None else number_of_books
+        self.number_of_books = int(number_of_books)
+        self.available = int(
+            available) if available is not None else self.number_of_books
 
     def get_dict(self):
         return {'title': self.title,

@@ -1,4 +1,4 @@
-from FileHandler import FileHandler as fl
+import FileHandler as fl
 
 
 class Member:
@@ -10,13 +10,13 @@ class Member:
         self.lent_books = lent_books
 
     def add_member(self):
-        members = fl.get_all_members()
+        members = fl.FileHandler.get_all_members()
         members[self.student_number] = self
-        fl.add_members_to_file(members)
+        fl.FileHandler.add_members_to_file(members)
 
     # use for check before adding new member
     def member_registered(student_number, student_id):
-        students = fl.get_all_members()
+        students = fl.FileHandler.get_all_members()
         if student_number in students:
             return True
         for student in students:
@@ -25,14 +25,14 @@ class Member:
         return False
 
     def lend_book(self):
-        members = fl.get_all_members()
+        members = fl.FileHandler.get_all_members()
         members[self.student_number].lent_books += 1
-        fl.add_members_to_file(members)
+        fl.FileHandler.add_members_to_file(members)
 
     def return_book(self):
-        members = fl.get_all_members()
+        members = fl.FileHandler.get_all_members()
         members[self.student_number].lent_books -= 1
-        fl.add_members_to_file(members)
+        fl.FileHandler.add_members_to_file(members)
 
     def get_dict(self):
         return {
@@ -44,26 +44,26 @@ class Member:
         }
 
     def get_member_by_last_name(last_name):
-        members = fl.get_all_members().values()
+        members = fl.FileHandler.get_all_members().values()
         results = filter(lambda member: last_name in member.last_name, members)
         return list(results)
 
     def get_member_by_full_name(full_name):
         first_name, last_name = full_name.split()
-        members = fl.get_all_members().values()
+        members = fl.FileHandler.get_all_members().values()
         results = filter(
             lambda member: last_name in member.last_name or first_name in member.first_name, members)
         return list(results)
 
     def get_member_by_student_id(student_id):
-        members = fl.get_all_members().values()
+        members = fl.FileHandler.get_all_members().values()
         for member in members:
             if member.student_id == student_id:
                 return member
         return False
 
     def get_member_by_student_number(student_number):
-        members = fl.get_all_members()
+        members = fl.FileHandler.get_all_members()
         if student_number in members:
             return members[student_number]
         else:

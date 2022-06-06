@@ -1,4 +1,4 @@
-from FileHandler import FileHandler as fl
+import FileHandler as fl
 
 
 class Book:
@@ -19,48 +19,48 @@ class Book:
                 'available': self.available}
 
     def add_book(self):
-        books = fl.get_all_books()
+        books = fl.FileHandler.get_all_books()
         if self.isbn in books:
             books[self.isbn].number_of_books += self.number_of_books
             books[self.isbn].available += self.number_of_books
         else:
             books[self.isbn] = self
-        fl.add_books_to_file(books)
+        fl.FileHandler.add_books_to_file(books)
 
     def lend_book(self):
-        books = fl.get_all_books()
+        books = fl.FileHandler.get_all_books()
         books[self.isbn].available -= 1
-        fl.add_books_to_file(books)
+        fl.FileHandler.add_books_to_file(books)
 
     def return_book(self):
-        books = fl.get_all_books()
+        books = fl.FileHandler.get_all_books()
         books[self.isbn].available += 1
-        fl.add_books_to_file(books)
+        fl.FileHandler.add_books_to_file(books)
 
     def edit_book(self, old_isbn):
-        books = fl.get_all_books()
+        books = fl.FileHandler.get_all_books()
         if self.isbn != old_isbn and self.isbn in books:
             return False
         del books[old_isbn]
         books[self.isbn] = self
-        fl.add_books_to_file(books)
+        fl.FileHandler.add_books_to_file(books)
         return True
 
     def book_exists(isbn):
-        return isbn in fl.get_all_books()
+        return isbn in fl.FileHandler.get_all_books()
 
     def get_book_by_title(title):
-        books = fl.get_all_books().values()
+        books = fl.FileHandler.get_all_books().values()
         results = filter(lambda book: title in book.title, books)
         return list(results)
 
     def get_book_by_author(author):
-        books = fl.get_all_books().values()
+        books = fl.FileHandler.get_all_books().values()
         results = filter(lambda book: author in book.author, books)
         return list(results)
 
     def get_book_by_isbn(isbn):
-        books = fl.get_all_books()
+        books = fl.FileHandler.get_all_books()
         if isbn in books:
             return books[isbn]
         else:

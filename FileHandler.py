@@ -1,7 +1,7 @@
 from csv import reader as csv_reader, DictWriter, writer as csv_writer
-from Books import Book
-from Members import Member
-from LendBooks import LendBook
+import Books
+import Members
+import LendBooks
 from os.path import exists
 
 
@@ -23,7 +23,7 @@ class FileHandler:
 
                 for row in reader:
                     title, author, year_of_publication, isbn, number_of_books, available = row
-                    books[isbn] = Book(
+                    books[isbn] = Books.Book(
                         title, author, year_of_publication, isbn, number_of_books, available)
         except FileNotFoundError:
             pass
@@ -46,7 +46,7 @@ class FileHandler:
 
                 for row in reader:
                     first_name, last_name, student_number, student_id, lent_books = row
-                    members[student_number] = Member(
+                    members[student_number] = Members.Member(
                         first_name, last_name, student_number, student_id, lent_books)
         except FileNotFoundError:
             pass
@@ -79,7 +79,7 @@ class FileHandler:
 
                 for row in reader:
                     isbn, student_number, date_lend, date_return = row
-                    date_lend = LendBook.get_date(date_lend)
+                    date_lend = LendBooks.LendBook.get_date(date_lend)
                     records.append(isbn, student_number, date_lend)
         except FileNotFoundError:
             pass

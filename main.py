@@ -16,7 +16,7 @@ choices = {
     '5': Menu.add_student,
     '6': Menu.lend_book,
     '7': Menu.return_book,
-    '8': Menu.reports,
+    '8': Menu.reports_menu,
     '9': quit,
 }
 

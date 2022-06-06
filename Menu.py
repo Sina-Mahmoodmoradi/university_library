@@ -109,6 +109,19 @@ class Menu:
         input()
 
     # ========================================================================================================
+    def make_book_object():
+        print('Enter following information:')
+        print('Title: ', end='')
+        title = input()
+        print('Author: ', end='')
+        author = input()
+        print('ISBN: ', end='')
+        isbn = input()
+        print('Published: ', end='')
+        published = input()
+        print('Number of books: ', end='')
+        number_of_books = int(input())
+        return Book(title, author, published, isbn, number_of_books)
 
     def looper(choices, func):
         while(True):

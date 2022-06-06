@@ -54,7 +54,7 @@ class FileHandler:
 
     def lend_book(lent_book):
         file_exists = exists('lendbook.csv')
-        with open('books.csv', 'a') as file:
+        with open('lendbook.csv', 'a') as file:
             writer = csv_writer(file)
             if not file_exists:
                 writer.writerow(['isbn', 'student_number',

@@ -37,10 +37,14 @@ class Book:
         books[self.isbn].available += 1
         fl.add_books_to_file(books)
 
-    def edit_book(self):
+    def edit_book(self, old_isbn):
         books = fl.get_all_books()
+        if self.isbn != old_isbn and self.isbn in books:
+            return False
+        del books[old_isbn]
         books[self.isbn] = self
         fl.add_books_to_file(books)
+        return True
 
     def book_exists(isbn):
         return isbn in fl.get_all_books()

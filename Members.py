@@ -1,3 +1,4 @@
+from atexit import register
 from FileHandler import FileHandler as fl
 
 
@@ -15,8 +16,14 @@ class Member:
         fl.add_members_to_file(members)
 
     # use for check before adding new member
-    def member_exists(student_number):
-        return student_number in fl.get_all_members()
+    def member_registered(student_number, student_id):
+        students = fl.get_all_members()
+        if student_number in students:
+            return True
+        for student in students:
+            if student.student_id == student_id:
+                return True
+        return False
 
     def lend_book(self):
         members = fl.get_all_members()

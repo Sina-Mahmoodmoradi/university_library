@@ -1,4 +1,3 @@
-from atexit import register
 from FileHandler import FileHandler as fl
 
 

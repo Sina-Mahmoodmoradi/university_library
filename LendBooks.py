@@ -1,5 +1,4 @@
 from datetime import date, timedelta
-from pkgutil import get_data
 from Books import Book
 from Members import Member
 from FileHandler import FileHandler as fl

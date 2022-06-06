@@ -2,13 +2,14 @@ from Menu import Menu
 import os
 
 
-with open('menu.txt', 'r') as file:
-    cont = file.read()
-    print(cont, end='')
+def print_menu():
+    with open('menu.txt', 'r') as file:
+        cont = file.read()
+        print(cont, end='')
 
 
 choices = {
-    # '1': Menu.search_books,
+    '1': Menu.search_books,
     # '2': Menu.search_students,
     # '3': Menu.edit_book,
     # '4': Menu.add_book,
@@ -24,12 +25,15 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+print_menu()
 while(True):
     choice = input()
     if choice in choices:
         clear()
         print('==================================================')
         choices[choice]()
+        clear()
+        print_menu()
     else:
         print(
             f'{choice} is not a choice. please enter one of available options: ', end='')

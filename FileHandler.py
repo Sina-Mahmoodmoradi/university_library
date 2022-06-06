@@ -79,8 +79,8 @@ class FileHandler:
 
                 for row in reader:
                     isbn, student_number, date_lend, date_return = row
-                    date_lend = LendBooks.LendBook.get_date(date_lend)
-                    records.append(isbn, student_number, date_lend)
+                    records.append(LendBooks.LendBook(
+                        isbn, student_number, date_lend))
         except FileNotFoundError:
             pass
         return records

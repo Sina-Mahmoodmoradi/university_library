@@ -52,7 +52,7 @@ class LendBook:
 
         if self.date_lend > records[record_key].date_return:
             print(
-                f'the book has been brought back {self.date_lend - records[record_key].date_return} day(s) late')
+                f'the book has been brought back {(self.date_lend - records[record_key].date_return).days} day(s) late')
 
         Books.Book.get_book_by_isbn(self.isbn).return_book()
         Members.Member.get_member_by_student_number(

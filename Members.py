@@ -42,10 +42,11 @@ class Member:
         results = filter(lambda member: last_name in member.last_name, members)
         return list(results)
 
-    def get_member_by_first_name(first_name):
+    def get_member_by_full_name(full_name):
+        first_name, last_name = full_name.split()
         members = fl.get_all_members().values()
         results = filter(
-            lambda member: first_name in member.first_name, members)
+            lambda member: last_name in member.last_name or first_name in member.first_name, members)
         return list(results)
 
     def get_member_by_student_id(student_id):

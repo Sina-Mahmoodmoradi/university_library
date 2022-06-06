@@ -33,7 +33,7 @@ class LendBook:
             print('Student number does not match!')
             return
         if member.lent_books == 3:
-            print('Student has already have 3 books!')
+            print('Student has already had 3 books!')
             return
         book.lend_book()
         member.lend_book()

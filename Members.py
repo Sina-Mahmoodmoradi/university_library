@@ -19,7 +19,7 @@ class Member:
         students = fl.FileHandler.get_all_members()
         if student_number in students:
             return True
-        for student in students:
+        for student in students.values():
             if student.student_id == student_id:
                 return True
         return False

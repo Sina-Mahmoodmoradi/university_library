@@ -202,11 +202,12 @@ class Menu:
     def looper(choices, func):
         while(True):
             choice = input()
-            if choices[choice] == 'return':
-                return
             if choice in choices:
+                if choices[choice] == 'return':
+                    return
                 print('==================================================')
                 func(choices[choice])
+                return
             else:
                 print(
                     f'"{choice}" is not an option. please enter one of available options: ', end='')

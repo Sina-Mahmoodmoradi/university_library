@@ -1,3 +1,4 @@
+from click import edit
 from Books import Book
 from Members import Member
 from LendBooks import LendBook
@@ -35,7 +36,7 @@ class Menu:
         books = func(input())
         if not books:
             print('no book matches this info')
-            print('Press any key to return: ', end='')
+            print('Press Enter to return: ', end='')
             input()
             return
         if not isinstance(books, list):
@@ -44,11 +45,25 @@ class Menu:
         for book in books:
             Menu.print_book_information(book)
             print('--------------------------------------------------')
-        print('Press any key to return: ', end='')
+        print('Press Enter to return: ', end='')
         input()
 
     # ========================================================================================================
-
+    def edit_book():
+        print('Enter book\'s ISBN: ', end='')
+        isbn = input()
+        if Book.book_exists(isbn):
+            book = Menu.make_book_object()
+            print('Number of available books: ', end='')
+            book.available = int(input())
+            if book.edit(isbn):
+                print('Book edited successfully')
+            else:
+                print('Fail! ISBN already exists!')
+        else:
+            print('no book matches this info')
+        print('Press Enter to return: ', end='')
+        input()
     # ========================================================================================================
 
     def search_students_menu():
@@ -81,7 +96,7 @@ class Menu:
         students = func(input())
         if not students:
             print('no student matches this info')
-            print('Press any key to return: ', end='')
+            print('Press Enter to return: ', end='')
             input()
             return
         if not isinstance(students, list):
@@ -90,7 +105,7 @@ class Menu:
         for student in students:
             Menu.print_student_information(student)
             print('--------------------------------------------------')
-        print('Press any key to return: ', end='')
+        print('Press Enter to return: ', end='')
         input()
 
     # ========================================================================================================

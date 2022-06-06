@@ -113,6 +113,26 @@ class Menu:
         input()
 
     # ========================================================================================================
+    def add_student():
+        print('Enter following information:')
+        print('First_name: ', end='')
+        first_name = input()
+        print('Last name: ', end='')
+        last_name = input()
+        print('Student number: ', end='')
+        student_number = input()
+        print('ID: ', end='')
+        student_id = input()
+        if Member.member_registered(student_number, student_id):
+            print('Member with this information is already registered!')
+        else:
+            Member(first_name, last_name, student_number,
+                   student_id).add_member()
+            print('Member registered successfully!')
+        print('Press Enter to return: ', end='')
+        input()
+    # ========================================================================================================
+
     def make_book_object():
         print('Enter following information:')
         print('Title: ', end='')

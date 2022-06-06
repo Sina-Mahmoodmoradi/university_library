@@ -7,7 +7,7 @@ class Member:
         self.last_name = last_name
         self.student_number = student_number
         self.student_id = student_id
-        self.lent_books = lent_books
+        self.lent_books = int(lent_books)
 
     def add_member(self):
         members = fl.FileHandler.get_all_members()

@@ -61,6 +61,8 @@ class LendBook:
         print('Done successfully!')
 
     def get_records_based_on_date_lend(date_lend):
+        if date_lend == '':
+            date_lend = str(date.today())
         records = fl.get_records_of_lent_books()
         results = []
         for record in records:
@@ -69,6 +71,8 @@ class LendBook:
         return results
 
     def get_records_based_on_date_return(date_return):
+        if date_return == '':
+            date_return = str(date.today())
         records = fl.get_records_of_lent_books()
         results = []
         for record in records:

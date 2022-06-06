@@ -27,7 +27,7 @@ class Menu:
         print(f'Author: {book.author}')
         print(f'Published : {book.year_of_publication}')
         print(f'Total number of books : {book.number_of_books}')
-        print(f'Available : {book.number_of_books}')
+        print(f'Available : {book.available}')
 
     def search_books(info):
         search_based_on, func = info.values()

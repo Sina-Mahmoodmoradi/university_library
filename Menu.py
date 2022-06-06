@@ -36,8 +36,7 @@ class Menu:
         books = func(input())
         if not books:
             print('no book matches this info')
-            print('Press Enter to return: ', end='')
-            input()
+            Menu.return_to_previous_menu()
             return
         if not isinstance(books, list):
             books = [books]
@@ -45,8 +44,7 @@ class Menu:
         for book in books:
             Menu.print_book_information(book)
             print('--------------------------------------------------')
-        print('Press Enter to return: ', end='')
-        input()
+        Menu.return_to_previous_menu()
 
     # ========================================================================================================
     def add_book():
@@ -66,8 +64,7 @@ class Menu:
                 print('Fail! ISBN already exists!')
         else:
             print('no book matches this info')
-        print('Press Enter to return: ', end='')
-        input()
+        Menu.return_to_previous_menu()
     # ========================================================================================================
 
     def search_students_menu():
@@ -100,8 +97,7 @@ class Menu:
         students = func(input())
         if not students:
             print('no student matches this info')
-            print('Press Enter to return: ', end='')
-            input()
+            Menu.return_to_previous_menu()
             return
         if not isinstance(students, list):
             students = [students]
@@ -109,8 +105,7 @@ class Menu:
         for student in students:
             Menu.print_student_information(student)
             print('--------------------------------------------------')
-        print('Press Enter to return: ', end='')
-        input()
+        Menu.return_to_previous_menu()
 
     # ========================================================================================================
     def add_student():
@@ -129,10 +124,30 @@ class Menu:
             Member(first_name, last_name, student_number,
                    student_id).add_member()
             print('Member registered successfully!')
-        print('Press Enter to return: ', end='')
-        input()
-    # ========================================================================================================
+        Menu.return_to_previous_menu()
 
+    # ========================================================================================================
+    def lend_book():
+        lent_book = Menu.make_lend_book_object()
+        lent_book.lend()
+        Menu.return_to_previous_menu()
+
+    def return_book():
+        lent_book = Menu.make_lend_book_object()
+        lent_book.return_book()
+        Menu.return_to_previous_menu()
+
+    def make_lend_book_object():
+        print('Enter following information:')
+        print('student number: ', end='')
+        student_number = input()
+        print('ISBN: ', end='')
+        isbn = input()
+        print('date (form: yyyy-mm-dd) (leave empty for today) : ', end='')
+        date = input()
+        return LendBook(isbn, student_number, date)
+
+    # ========================================================================================================
     def make_book_object():
         print('Enter following information:')
         print('Title: ', end='')
@@ -158,3 +173,7 @@ class Menu:
             else:
                 print(
                     f'"{choice}" is not an option. please enter one of available options: ', end='')
+
+    def return_to_previous_menu():
+        print('Press Enter to return: ', end='')
+        input()

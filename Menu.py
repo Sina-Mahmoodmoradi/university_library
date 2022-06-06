@@ -49,6 +49,7 @@ class Menu:
     def add_book():
         book = Menu.make_book_object()
         book.add_book()
+        print('Done successfully!')
         Menu.return_to_previous_menu()
 
     def edit_book():

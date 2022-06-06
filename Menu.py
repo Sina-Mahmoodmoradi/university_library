@@ -23,6 +23,14 @@ class Menu:
 
     def search_title():
         print('Enter book\'s title or part of it: ', end='')
+        books = Book.get_book_by_title(input())
+        if not books:
+            print('There are no books with this title')
+            print('Press any key to return: ', end='')
+            input()
+            return
+        for book in books:
+            Menu.print_book_information(book)
 
     def looper(choices):
         while(True):

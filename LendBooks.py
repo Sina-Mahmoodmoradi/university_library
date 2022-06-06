@@ -6,9 +6,10 @@ from FileHandler import FileHandler as fl
 
 
 class LendBook:
-    def __init__(self, isbn, student_number, date_lend=date.today()) -> None:
+    def __init__(self, isbn, student_number, date_lend) -> None:
         self.isbn = isbn
         self.student_number = student_number
+        date_lend = date.today() if date_lend == '' else date.fromisoformat(date_lend)
         self.date_lend = date_lend
         self.date_return = date_lend + timedelta(days=7)
 

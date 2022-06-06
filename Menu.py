@@ -59,7 +59,7 @@ class Menu:
             book = Menu.make_book_object()
             print('Number of available books: ', end='')
             book.available = int(input())
-            if book.edit(isbn):
+            if book.edit_book(isbn):
                 print('Book edited successfully')
             else:
                 print('Fail! ISBN already exists!')

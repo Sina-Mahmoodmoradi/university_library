@@ -25,7 +25,7 @@ class LendBook:
             print('ISBN does not match!')
             return
         if book.available == 0:
-            print('this book is not available right now!')
+            print('This book is not available right now!')
             return
 
         member = Member.get_member_by_student_number(self.student_number)
@@ -33,12 +33,12 @@ class LendBook:
             print('Student number does not match!')
             return
         if member.lent_books == 3:
-            print('student has already have 3 books!')
+            print('Student has already have 3 books!')
             return
         book.lend_book()
         member.lend_book()
         fl.lend_book(self)
-        print('done!')
+        print('Done successfully!')
 
     def return_book(self):
         records = fl.get_records_of_lent_books()
@@ -58,6 +58,7 @@ class LendBook:
         Member.get_member_by_student_number(self.student_number).return_book()
         del records[record_key]
         fl.rewrite_lendbook_file(records)
+        print('Done successfully!')
 
     def get_records_based_on_date_lend(date_lend):
         records = fl.get_records_of_lent_books()

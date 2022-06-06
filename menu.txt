@@ -1,0 +1,12 @@
+==================================================
+1. Search books
+2. Search students
+3. Edit book
+4. Add book
+5. Add student
+6. Lend book
+7. Return book
+8. Reports
+9. Exit
+
+choose one of above options: 

@@ -148,6 +148,44 @@ class Menu:
         return LendBook(isbn, student_number, date)
 
     # ========================================================================================================
+    def reports_menu():
+        print('1. Lent books based on date lend')
+        print('2. Lent books based on date return')
+        print('3. Lent books based on ISBN')
+        print('4. Lent books based on student number')
+        print('5. Return ')
+        print('')
+        print('Choose one of above options: ', end='')
+        choices = {
+            '1': {'search_based_on': 'date lend (form:yyyy-mm-dd)(leave empty for today)', 'func': LendBook.get_records_based_on_date_lend},
+            '2': {'search_based_on': 'date return (form:yyyy-mm-dd)(leave empty for today)', 'func': LendBook.get_records_based_on_date_return},
+            '3': {'search_based_on': 'ISBN', 'func': LendBook.get_records_based_on_isbn},
+            '4': {'search_based_on': 'student number', 'func': LendBook.get_records_based_on_student_number},
+            '5': 'return',
+        }
+        Menu.looper(choices, Menu.search_records)
+
+    def search_records(info):
+        search_based_on, func = info.values()
+        print(f'Enter {search_based_on}: ', end='')
+        records = func(input())
+        if not records:
+            print('no record matches this info')
+            Menu.return_to_previous_menu()
+            return
+        print('--------------------------------------------------')
+        for record in records:
+            Menu.print_record(record)
+            print('--------------------------------------------------')
+        Menu.return_to_previous_menu()
+
+    def print_record(record):
+        print(f'Student number: {record.student_number}')
+        print(f'ISBN: {record.isbn}')
+        print(f'Date lend: {record.date_lend}')
+        print(f'Date return: {record.date_return}')
+
+    # ========================================================================================================
     def make_book_object():
         print('Enter following information:')
         print('Title: ', end='')

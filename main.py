@@ -9,14 +9,14 @@ def print_menu():
 
 
 choices = {
-    '1': Menu.search_books,
-    # '2': Menu.search_students,
-    # '3': Menu.edit_book,
-    # '4': Menu.add_book,
-    # '5': Menu.add_students,
-    # '6': Menu.lend_book,
-    # '7': Menu.return_book,
-    # '8': Menu.reports,
+    '1': Menu.search_books_menu,
+    '2': Menu.search_students_menu,
+    '3': Menu.edit_book,
+    '4': Menu.add_book,
+    '5': Menu.add_student,
+    '6': Menu.lend_book,
+    '7': Menu.return_book,
+    '8': Menu.reports,
     '9': quit,
 }
 
@@ -36,4 +36,4 @@ while(True):
         print_menu()
     else:
         print(
-            f'{choice} is not a choice. please enter one of available options: ', end='')
+            f'"{choice}" is not a choice. please enter one of available options: ', end='')
